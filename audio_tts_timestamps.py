@@ -1,12 +1,15 @@
 import wave
-import json
+import json, os
 
 from vosk import Model, KaldiRecognizer, SetLogLevel
 import word as custom_Word
 
+SetLogLevel(0) 
+
 def tts(audio_file):
-    model_path = "models/vosk-model-en-us-0.21"
-    audio_filename = "audio/speech_recognition_systems.wav"
+    script_directory = os.path.dirname(os.path.abspath(__file__))
+    model_path = os.path.join(script_directory, "vosk-model-en-us-0.22")
+    audio_filename = audio_file
 
     model = Model(model_path)
     wf = wave.open(audio_filename, "rb")
